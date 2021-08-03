@@ -159,13 +159,12 @@ If it's nil, the hours remind will not started."
   (when-let ((uris (cdr (assoc keyword rainbow-fart-keyword-voices-alist))))
     (let ((uri (nth (random (length uris)) uris))
           (voice-model-directory
-           (expand-file-name rainbow-fart-voice-model rainbow-fart-voices-directory)))
+           (expand-file-name (alist-get 't rainbow-fart-voice-pack-alist) rainbow-fart-voices-directory)))
       (if (url-type (url-generic-parse-url uri))
           uri
         (let ((uri (expand-file-name uri voice-model-directory)))
           (when (file-exists-p uri)
             uri))))))
-
 
 (defun rainbow-fart--play (keyword)
   "A private function to play voice for matched KEYWORD."
@@ -261,7 +260,7 @@ If it's nil, the hours remind will not started."
   (unless rainbow-fart-recorder-template
     (error "The variable rainbow-fart-recorder-template is undefined!"))
   (let* ((keyword (read-string "what keyword do you want to recorded for: " (thing-at-point 'symbol)))
-         (model-directory (expand-file-name rainbow-fart-voice-model rainbow-fart-voices-directory))
+         (model-directory (expand-file-name (alist-get 't rainbow-fart-voice-pack-alist) rainbow-fart-voices-directory))
          (voice-file-name (format "%s-%s.mp3" keyword (float-time)))
          (voice-file-path (expand-file-name voice-file-name model-directory))
          (record-cmd (replace-regexp-in-string "%f" voice-file-path rainbow-fart-recorder-template)))
