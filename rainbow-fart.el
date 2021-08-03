@@ -123,11 +123,7 @@ If it's nil, the hours remind will not started."
          ;; `contributes' is a vector of keywords, voices and texts.
          (contributes (or (alist-get 'contributes manifest) ; "contributes" is in "manifest.json"
                           ;; "contributes" is in another file "contributes.json"
-                          (alist-get 'contributes
-                                     (json-read-file
-                                      (expand-file-name
-                                       "contributes.json"
-                                       (file-name-directory manifest-json-file)))))))
+                          (alist-get 'contributes (json-read-file contributes-json-file)))))
     (setq rainbow-fart-manifest-alist manifest)
     (message "Loading rainbow-fart voice pack: %s (%s) by %s." name version author)
     (when (vectorp contributes)
