@@ -199,7 +199,8 @@ If it's nil, the hours remind will not started."
              (not (memq major-mode rainbow-fart-ignore-modes)))
     (let* ((prefix (save-excursion
                      ;; support prefix like "if(", "if (", "=>" etc keywords following punctuation.
-                     (rainbow-fart-get-prefix "\\(?1:\\_<[^\\ ].\\_>\\)\\ ?[[:punct:]]?" 1)))
+                     (or (rainbow-fart-get-prefix "\\(?1:\\_<[^\\ ].\\_>\\)\\ ?[[:punct:]]?" 1)
+                         (progn (goto-char (- (point) 1)) (thing-at-point 'symbol)))))
            (face (get-text-property (- (point) 1) 'face)))
       (when (or (memq face '(font-lock-keyword-face))
                 (null face))
