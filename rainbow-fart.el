@@ -196,7 +196,7 @@ If it's nil, the hours remind will not started."
 (defun rainbow-fart--post-self-insert ()
   "A hook function on `post-self-insert-hook' to play audio."
   (when (and (derived-mode-p 'prog-mode)
-             (memq major-mode rainbow-fart-ignore-modes))
+             (not (memq major-mode rainbow-fart-ignore-modes)))
     (let* ((prefix (save-excursion
                      ;; support prefix like "if(", "if (", "=>" etc keywords following punctuation.
                      (rainbow-fart-get-prefix "\\(?1:\\_<[^\\ ].\\_>\\)\\ ?[[:punct:]]?" 1)))
