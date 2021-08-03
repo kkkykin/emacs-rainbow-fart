@@ -135,12 +135,12 @@ If it's nil, the hours remind will not started."
       (setq rainbow-fart-keyword-voices-alist nil)
       ;; NOTE `contributes' is a vector. Can't use `loop' to iterate.
       ;; append to data structure
-      (mapcar
+      (mapc
        (lambda (definition-alist)
          (let ((keywords (mapcar #'identity (alist-get 'keywords definition-alist)))
                (voices (mapcar #'identity (alist-get 'voices definition-alist)))
                (texts (mapcar #'identity (alist-get 'texts definition-alist))))
-           (mapcar
+           (mapc
             (lambda (key-str)
               (if-let ((keyword (string-trim key-str)))
                   (add-to-list 'rainbow-fart-keyword-voices-alist (cons keyword voices) 'append)))
