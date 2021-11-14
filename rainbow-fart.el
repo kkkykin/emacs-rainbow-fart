@@ -284,7 +284,9 @@ If it's nil, the hours remind will not started."
     (advice-remove (eval 'flycheck-display-errors-function)
                    'rainbow-fart--linter-display-errors)
     (when (timerp rainbow-fart--timer)
-      (cancel-timer rainbow-fart--timer))))
+      (cancel-timer rainbow-fart--timer))
+    ;; reset rainbow-fart playing status after toggled `rainbow-fart-mode'.
+    (setq rainbow-fart--playing nil)))
 
 
 
