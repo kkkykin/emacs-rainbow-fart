@@ -23,7 +23,7 @@
 ;;; Commentary:
 ;; 
 ;; Usage:
-;; (add-hook 'prog-mode-hook #'rainbow-fart-mode)
+;; (add-hook 'after-init-hook #'rainbow-fart-mode)
 
 ;;; Code:
 
@@ -267,7 +267,8 @@ If it's nil, the hours remind will not started."
 
 ;;;###autoload
 (define-minor-mode rainbow-fart-mode
-  "A minor mode add an encourager when you programming."
+  "A global minor mode add an encourager when you programming.
+Usage: (add-hook 'after-init-hook #'rainbow-fart-mode)"
   :init-value nil
   :lighter nil
   :group 'rainbow-fart
