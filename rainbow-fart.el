@@ -223,21 +223,21 @@ If it's nil, the hours remind will not started."
          (pair (split-string time ":"))
          (hour (string-to-number (car pair))))
     (cond
-     ((and (> hour 05) (< hour 08))     ; 05:00 -- 08:00
+     ((and (>= hour 05) (<= hour 08))     ; 05:00 -- 08:00
       "morning")
-     ((and (> hour 08) (< hour 10))     ; 08:00 -- 10:00
+     ((and (>= hour 08) (<= hour 10))     ; 08:00 -- 10:00
       "hour")
-     ((and (> hour 10) (< hour 11))     ; 10:00 -- 11:00
+     ((and (>= hour 10) (<= hour 11))     ; 10:00 -- 11:00
       "before_noon")
-     ((and (> hour 11) (< hour 13))     ; 11:00 -- 13:00
+     ((and (>= hour 11) (<= hour 13))     ; 11:00 -- 13:00
       "noon")
-     ((and (> hour 13) (< hour 15))     ; 13:00 -- 15:00
+     ((and (>= hour 13) (<= hour 15))     ; 13:00 -- 15:00
       "hour")
-     ((and (> hour 15) (< hour 17))     ; 15:00 -- 17:00
+     ((and (>= hour 15) (<= hour 17))     ; 15:00 -- 17:00
       "afternoon")
-     ((and (> hour 18) (< hour 22))     ; 18:00 -- 21:00
+     ((and (>= hour 18) (<= hour 22))     ; 18:00 -- 21:00
       "evening")
-     ((or (> hour 23) (< hour 01))     ; 23:00 -- 01:00
+     ((or (>= hour 23) (<= hour 01))     ; 23:00 -- 01:00
       "midnight"))))
 
 (defun rainbow-fart--timing-remind ()
