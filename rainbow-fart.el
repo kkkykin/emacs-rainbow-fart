@@ -278,7 +278,9 @@ Usage: (add-hook 'after-init-hook #'rainbow-fart-mode)"
         (add-hook 'post-self-insert-hook #'rainbow-fart--post-self-insert t t)
         (advice-add (eval 'flycheck-display-errors-function)
                     :before 'rainbow-fart--linter-display-errors)
-        (when rainbow-fart-time-interval
+        (when (and rainbow-fart-time-interval
+                   ;; only when media audio file available.
+                   (rainbow-fart--get-media-uri "noon"))
           (setq rainbow-fart--timer
                 (run-with-timer 0 rainbow-fart-time-interval 'rainbow-fart--timing-remind))))
     (remove-hook 'post-self-insert-hook #'rainbow-fart--post-self-insert t)
